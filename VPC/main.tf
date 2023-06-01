@@ -8,7 +8,7 @@ resource "aws_vpc" "amie" {
   enable_dns_hostnames = true
   
   tags = {
-    Name = "amie"
+    Name = "amie-${var.stage_name}"
   }
 }
 
@@ -17,7 +17,7 @@ resource "aws_subnet" "private_subnet_1" {
   cidr_block        = "10.${local.cidr_block_dot}.0.0/24"
   availability_zone = "ap-southeast-1a"
   tags = {
-    Name = "private_subnet_1"
+    Name = "private_subnet_1-${var.stage_name}"
   }
 }
 
@@ -26,7 +26,7 @@ resource "aws_subnet" "private_subnet_2" {
   cidr_block        = "10.${local.cidr_block_dot}.1.0/24"
   availability_zone = "ap-southeast-1b"
   tags = {
-    Name = "private_subnet_2"
+    Name = "private_subnet_2-${var.stage_name}"
   }
 }
 
@@ -35,7 +35,7 @@ resource "aws_subnet" "public_subnet_1" {
   cidr_block        = "10.${local.cidr_block_dot}.2.0/24"
   availability_zone = "ap-southeast-1a"
   tags = {
-    Name = "public_subnet_1"
+    Name = "public_subnet_1-${var.stage_name}"
   }
 }
 
@@ -44,7 +44,7 @@ resource "aws_subnet" "public_subnet_2" {
   cidr_block        = "10.${local.cidr_block_dot}.3.0/24"
   availability_zone = "ap-southeast-1b"
   tags = {
-    Name = "public_subnet_2"
+    Name = "public_subnet_2-${var.stage_name}"
   }
 }
 
@@ -53,7 +53,7 @@ resource "aws_internet_gateway" "my_igw" {
   vpc_id = aws_vpc.amie.id
 
   tags = {
-    Name = "my-igw"
+    Name = "my-igw-${var.stage_name}"
   }
 }
 
@@ -67,7 +67,7 @@ resource "aws_route_table" "routable_public" {
   }
 
   tags = {
-    Name = "routable_public"
+    Name = "routable_public-${var.stage_name}"
   }
 }
 
@@ -76,7 +76,7 @@ resource "aws_route_table" "routable_private" {
   vpc_id = aws_vpc.amie.id
 
   tags = {
-    Name = "routable_private"
+    Name = "routable_private-${var.stage_name}"
   }
 }
 
